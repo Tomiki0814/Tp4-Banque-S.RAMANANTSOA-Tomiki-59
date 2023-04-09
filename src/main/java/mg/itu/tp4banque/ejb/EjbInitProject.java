@@ -24,12 +24,14 @@ public class EjbInitProject {
     @PostConstruct
     public void InsertDefaultData() {
         //John Lennon, 150000 ; Paul McCartney, 950000 ; Ringo Starr, 20000 ; Georges Harrisson, 100000
-        CompteBancaire[] compteBancaire = {new CompteBancaire("John Lennon", 15000),
-            new CompteBancaire("Paul McCartney", 950000),
-            new CompteBancaire("Ringo Starr", 20000),
-            new CompteBancaire("Georges Harrisson", 100000)};
-        for (CompteBancaire compte : compteBancaire) {
-            gestionnaireCompte.persist(compte);
+        if (gestionnaireCompte.count() == 0) {
+            CompteBancaire[] compteBancaire = {new CompteBancaire("John Lennon", 15000),
+                new CompteBancaire("Paul McCartney", 950000),
+                new CompteBancaire("Ringo Starr", 20000),
+                new CompteBancaire("Georges Harrisson", 100000)};
+            for (CompteBancaire compte : compteBancaire) {
+                gestionnaireCompte.persist(compte);
+            }
         }
 
     }
