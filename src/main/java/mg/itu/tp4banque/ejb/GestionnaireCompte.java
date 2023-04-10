@@ -79,7 +79,7 @@ public class GestionnaireCompte {
         }
         envoyeur.setSolde(envoyeur.getSolde() - montant);
         receveur.setSolde(receveur.getSolde() + montant);
-
+        Util.addFlashInfoMessage("Transfert correctement effectué");
         return "listeComptes";
 
     }
