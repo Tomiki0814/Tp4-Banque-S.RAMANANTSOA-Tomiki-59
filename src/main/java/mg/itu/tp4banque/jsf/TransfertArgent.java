@@ -4,9 +4,11 @@
  */
 package mg.itu.tp4banque.jsf;
 
+import jakarta.ejb.EJB;
 import jakarta.inject.Named;
 import jakarta.faces.view.ViewScoped;
 import java.io.Serializable;
+import mg.itu.tp4banque.ejb.GestionnaireCompte;
 
 /**
  *
@@ -19,6 +21,8 @@ public class TransfertArgent implements Serializable {
     /**
      * Creates a new instance of TransfertArgent
      */
+    @EJB
+    GestionnaireCompte gestionnaireCompte;
     
     private int idEnvoyeur;
     private int idReceveur;
@@ -27,10 +31,15 @@ public class TransfertArgent implements Serializable {
     public TransfertArgent() {
     }
 
+    public String Transferer(){
+        gestionnaireCompte.transfererArgent(idEnvoyeur, idReceveur, montant);
+        return "listeComptes";
+    }
+    
     public int getIdEnvoyeur() {
         return idEnvoyeur;
     }
-
+    
     public void setIdEnvoyeur(int idEnvoyeur) {
         this.idEnvoyeur = idEnvoyeur;
     }
