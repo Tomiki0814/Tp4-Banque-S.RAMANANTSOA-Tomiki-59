@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
 
@@ -15,27 +16,29 @@
 
             <ui:define name="content">
                 <h:form>
-                    <h:dataTable value="#{listeComptes.getCompteBancaires()}"
-                                 var="item"  >
-                        <h:column>
+                    <p:dataTable value="#{listeComptes.getCompteBancaires()}"
+                                 var="item" tableStyle="width:auto"  >
+                        <p:column width="40">
                             <f:facet name="header">
                                 <h:outputText value="Id"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column width="200">
                             <f:facet name="header">
                                 <h:outputText value="Nom"/>
                             </f:facet>
                             <h:outputText value="#{item.nom}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column style="text-align:right;" width="60">
                             <f:facet name="header">
                                 <h:outputText value="Solde"/>
                             </f:facet>
-                            <h:outputText value="#{item.solde}"/>
-                        </h:column>
-                    </h:dataTable>
+                            <h:outputText value="#{item.solde}">
+                                <f:convertNumber pattern="###,###,##0"/>
+                            </h:outputText>
+                        </p:column>
+                    </p:dataTable>
                 </h:form>
                 <h:messages/>
             </ui:define>
