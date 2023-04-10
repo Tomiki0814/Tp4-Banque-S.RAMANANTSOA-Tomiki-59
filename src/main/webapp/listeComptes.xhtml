@@ -14,21 +14,30 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:dataTable value="#{listeComptes.getCompteBancaires()}"
-                             var="item"  >
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Id"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nom}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nom"/>
-                        </f:facet>
-                        <h:outputText value="#{item.solde}"/>
-                    </h:column>
-                </h:dataTable>
+                <h:form>
+                    <h:dataTable value="#{listeComptes.getCompteBancaires()}"
+                                 var="item"  >
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nom"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Solde"/>
+                            </f:facet>
+                            <h:outputText value="#{item.solde}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+                <h:messages/>
             </ui:define>
 
         </ui:composition>
