@@ -61,20 +61,20 @@ public class GestionnaireCompte {
         boolean erreur = false;
         if (receveur == null) {
             erreur = true;
-            Util.messageErreur("Aucun compte avec l'id "+idReceveur, "Aucun compte avec l'id "+idReceveur, "form:idReceveur");
+            Util.messageErreur("Aucun compte avec l'id " + idReceveur, "Aucun compte avec l'id " + idReceveur, "form:idReceveur");
 
         }
         if (envoyeur == null) {
             erreur = true;
             erreur = true;
-            Util.messageErreur("Aucun compte avec l'id "+idEnvoyeur, "Aucun compte avec l'id "+idEnvoyeur, "form:idEnvoyeur");
+            Util.messageErreur("Aucun compte avec l'id " + idEnvoyeur, "Aucun compte avec l'id " + idEnvoyeur, "form:idEnvoyeur");
         }
-        
-        if(montant <=0){
+
+        if (montant <= 0) {
             Util.messageErreur("Montant doit etre superieur a 0", "Montant doit etre superieur a 0", "form:montant");
         }
-        
-        if(erreur){
+
+        if (erreur) {
             return null;
         }
         envoyeur.setSolde(envoyeur.getSolde() - montant);
@@ -82,5 +82,23 @@ public class GestionnaireCompte {
         Util.addFlashInfoMessage("Transfert correctement effectué");
         return "listeComptes?faces-redirect=true";
 
+    }
+
+    public void deposer(CompteBancaire compteBancaire, int montant) {
+        compteBancaire = em.merge(compteBancaire);
+        compteBancaire.deposer(montant);
+        //(compteBancaire);
+    }
+
+    /**
+     * Retrait d'argent sur un compte bancaire.
+     *
+     * @param compteBancaire
+     * @param montant
+     */
+    public void retirer(CompteBancaire compteBancaire, int montant) {
+        compteBancaire = em.merge(compteBancaire);
+        compteBancaire.retirer(montant);
+        //persist(compteBancaire);
     }
 }
