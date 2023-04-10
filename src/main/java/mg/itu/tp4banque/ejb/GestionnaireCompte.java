@@ -53,4 +53,16 @@ public class GestionnaireCompte {
     public CompteBancaire findCompte(int id){
         return em.find(CompteBancaire.class, id);
     }
+    
+    public void transfererArgent(int idEnvoyeur, int idReceveur, int montant){
+        CompteBancaire envoyeur = findCompte(idEnvoyeur);
+        CompteBancaire receveur = findCompte(idReceveur);
+        
+        if(receveur == null || envoyeur == null ){
+            // throws Exception
+        } 
+        envoyeur.setSolde(envoyeur.getSolde()-montant);
+        receveur.setSolde(receveur.getSolde()+montant);
+        
+    }
 }
