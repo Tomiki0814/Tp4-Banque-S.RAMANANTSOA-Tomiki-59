@@ -32,8 +32,7 @@ public class TransfertArgent implements Serializable {
     }
 
     public String Transferer(){
-        gestionnaireCompte.transfererArgent(idEnvoyeur, idReceveur, montant);
-        return "listeComptes";
+        return gestionnaireCompte.transfererArgent(idEnvoyeur, idReceveur, montant);
     }
     
     public int getIdEnvoyeur() {

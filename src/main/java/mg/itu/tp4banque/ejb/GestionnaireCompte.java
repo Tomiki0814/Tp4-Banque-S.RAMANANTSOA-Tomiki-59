@@ -11,6 +11,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import java.util.List;
 import mg.itu.tp4banque.entities.CompteBancaire;
+import mg.itu.tp4banque.error.Util;
 
 /**
  *
@@ -43,26 +44,43 @@ public class GestionnaireCompte {
         Query query = em.createQuery("select e from CompteBancaire e");
         return query.getResultList();
     }
-    
-    public Long count(){
+
+    public Long count() {
         String rqt = "select count(c) from CompteBancaire c";
         Query query = em.createQuery(rqt);
-        return (Long) query.getSingleResult();        
+        return (Long) query.getSingleResult();
     }
-    
-    public CompteBancaire findCompte(int id){
+
+    public CompteBancaire findCompte(int id) {
         return em.find(CompteBancaire.class, id);
     }
-    
-    public void transfererArgent(int idEnvoyeur, int idReceveur, int montant){
+
+    public String transfererArgent(int idEnvoyeur, int idReceveur, int montant) {
         CompteBancaire envoyeur = findCompte(idEnvoyeur);
         CompteBancaire receveur = findCompte(idReceveur);
+        boolean erreur = false;
+        if (receveur == null) {
+            erreur = true;
+            Util.messageErreur("Aucun compte avec l'id "+idReceveur, "Aucun compte avec l'id "+idReceveur, "form:idReceveur");
+
+        }
+        if (envoyeur == null) {
+            erreur = true;
+            erreur = true;
+            Util.messageErreur("Aucun compte avec l'id "+idEnvoyeur, "Aucun compte avec l'id "+idEnvoyeur, "form:idEnvoyeur");
+        }
         
-        if(receveur == null || envoyeur == null ){
-            // throws Exception
-        } 
-        envoyeur.setSolde(envoyeur.getSolde()-montant);
-        receveur.setSolde(receveur.getSolde()+montant);
+        if(montant <=0){
+            Util.messageErreur("Montant doit etre superieur a 0", "Montant doit etre superieur a 0", "form:montant");
+        }
         
+        if(erreur){
+            return null;
+        }
+        envoyeur.setSolde(envoyeur.getSolde() - montant);
+        receveur.setSolde(receveur.getSolde() + montant);
+
+        return "listeComptes";
+
     }
 }
