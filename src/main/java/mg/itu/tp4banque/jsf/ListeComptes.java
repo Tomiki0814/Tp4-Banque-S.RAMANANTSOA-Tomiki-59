@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import mg.itu.tp4banque.ejb.GestionnaireCompte;
 import mg.itu.tp4banque.entities.CompteBancaire;
+import mg.itu.tp4banque.error.Util;
 
 /**
  *
@@ -42,7 +43,7 @@ public class ListeComptes implements Serializable {
     
     public String supprimer(CompteBancaire compte){
         gestionnaireCompte.supprimerCompte(compte);
-        
+        Util.addFlashInfoMessage("Compte de " + compte.getNom() + " supprimé");
         return "listeComptes?faces-redirect=true";
     }
 
