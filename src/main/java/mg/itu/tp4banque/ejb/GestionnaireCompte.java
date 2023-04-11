@@ -90,12 +90,6 @@ public class GestionnaireCompte {
         //(compteBancaire);
     }
 
-    /**
-     * Retrait d'argent sur un compte bancaire.
-     *
-     * @param compteBancaire
-     * @param montant
-     */
     public void retirer(CompteBancaire compteBancaire, int montant) {
         compteBancaire = em.merge(compteBancaire);
         compteBancaire.retirer(montant);
@@ -108,6 +102,5 @@ public class GestionnaireCompte {
     
     public void validerModification(CompteBancaire compteBancaire){
         compteBancaire = em.merge(compteBancaire);
-        //compteBancaire = new CompteBancaire(nom, solde);
     }
 }

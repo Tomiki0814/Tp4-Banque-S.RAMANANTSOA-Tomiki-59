@@ -50,7 +50,6 @@ public class AjoutCompte implements Serializable {
 
     public String AjouterCompte() {
         boolean erreur = false;
-
         if (solde <= 0) {
             Util.messageErreur("Montant doit etre superieur a 0", "Montant doit etre superieur a 0", "form:solde");
             erreur = true;

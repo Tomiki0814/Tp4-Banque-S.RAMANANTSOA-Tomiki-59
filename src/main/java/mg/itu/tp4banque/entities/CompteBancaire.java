@@ -67,9 +67,4 @@ public class CompteBancaire implements Serializable {
     }
 
 
-    @Override
-    public String toString() {
-        return "mg.itu.tp4banque.entities.CompteBancaire[ id=" + id + " ]";
-    }
-
 }
