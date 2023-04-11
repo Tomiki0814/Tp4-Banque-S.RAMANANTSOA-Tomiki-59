@@ -105,4 +105,9 @@ public class GestionnaireCompte {
     public void supprimerCompte(CompteBancaire compte) {
         em.remove(em.merge(compte));
     }
+    
+    public void validerModification(CompteBancaire compteBancaire){
+        compteBancaire = em.merge(compteBancaire);
+        //compteBancaire = new CompteBancaire(nom, solde);
+    }
 }
