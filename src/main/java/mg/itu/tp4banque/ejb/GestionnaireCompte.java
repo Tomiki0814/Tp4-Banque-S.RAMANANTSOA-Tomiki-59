@@ -101,4 +101,8 @@ public class GestionnaireCompte {
         compteBancaire.retirer(montant);
         //persist(compteBancaire);
     }
+
+    public void supprimerCompte(CompteBancaire compte) {
+        em.remove(em.merge(compte));
+    }
 }
