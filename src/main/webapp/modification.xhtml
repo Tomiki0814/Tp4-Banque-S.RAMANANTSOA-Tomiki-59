@@ -23,20 +23,20 @@
                 <h:form id="form">
                     <h:panelGrid columns="3">
                         <h:outputLabel value="nom" for="nom" /> 
-                        <h:inputText id="nom" size="20" value="#{modification.getCompteBancaire().nom}"
+                        <h:inputText id="nom" size="20" value="#{modification.compteBancaire.nom}"
                                      required="true"
                                      converterMessage="L'id envoyeur est un nombre entier"/>
                         <h:message for="nom"  infoStyle="color: green;"
                                    errorStyle="color: red;"/>
 
                         <h:outputLabel value="montant" for="montant" /> 
-                        <h:inputText id="montant" size="20" value="#{modification.getCompteBancaire().solde}"
+                        <h:inputText id="montant" size="20" value="#{modification.compteBancaire.solde}"
                                      required="true"
                                      converterMessage="solde doit etre un entier"/>
                         <h:message for="montant"  infoStyle="color: green;"
                                    errorStyle="color: red;"/>
 
-                        <h:commandButton action="#{modification.modifier(modification.getCompteBancaire())}"
+                        <h:commandButton action="#{modification.modifier()}"
                            value="Enregistrer la modification"/>
 
                     </h:panelGrid>

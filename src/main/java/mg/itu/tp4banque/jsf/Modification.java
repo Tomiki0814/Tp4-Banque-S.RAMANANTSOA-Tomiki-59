@@ -51,7 +51,7 @@ public class Modification implements Serializable {
         this.compteBancaire = compteBancaire;
     }
     
-    public String modifier(CompteBancaire compteBancaire){
+    public String modifier(){
         if(compteBancaire.getSolde()<=0){
             Util.messageErreur("Solde doit etre superieur a 0 ", "Solde doit etre superieur a 0", "form:montant");
             return null;
